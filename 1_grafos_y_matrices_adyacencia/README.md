@@ -4,7 +4,6 @@
 
 Proximamente, se hará la descripción de este programa
 
-## Instalación de librerías 🛠️
 
 ## Requisitos 📋
 
@@ -23,7 +22,7 @@ Proximamente, se hará la descripción de este programa
     python -m pip install --upgrade pip
 <!--endsec-->
 
-### Ejecución del programa 🔧
+## Ejecución del programa 🔧
 
 Para ejecutarlo por terminal, debe posicionarse en esta carpeta e ingresar el siguiente comando
 <!--sec data-title="Prompt: OS X and Linux" data-id="OSX_Linux_prompt" data-collapse=true ces-->
