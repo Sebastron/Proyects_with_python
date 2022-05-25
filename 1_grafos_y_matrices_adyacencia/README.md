@@ -1,4 +1,4 @@
-# Trabajo de grafos
+# Grafos y Matrices de adyacencia
 
 ## Descripción 🚀
 
