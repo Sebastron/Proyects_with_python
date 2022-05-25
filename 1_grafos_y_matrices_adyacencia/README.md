@@ -17,7 +17,7 @@ Proximamente, se hará la descripción de este programa
     pip install networkx
 <!--endsec-->
 
-* En caso de requerir una actualización de Python
+* En caso de requerir alguna actualización de Python
 <!--sec data-title="Prompt: OS X and Linux" data-id="OSX_Linux_prompt" data-collapse=true ces-->
     python -m pip install --upgrade pip
 <!--endsec-->
