@@ -1,1 +1,1 @@
-# Proyectos desarrollados usando Pythom
+# Proyectos desarrollados usando Python
