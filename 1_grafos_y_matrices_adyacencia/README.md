@@ -2,8 +2,21 @@
 
 ## Descripción 🚀
 
-Proximamente, se hará la descripción de este programa
-
+Este programa consiste en el estudio de grafos, donde el usuario podrá ingresar diferentes opciones (en números) que estime conveniente, donde estas son las siguientes
+1. Ingresar un nuevo grafo
+2. f
+3. dg
+4. fg
+5. dgsd
+6. df
+7.
+8.
+9.
+10.
+11.
+12.
+13.
+14.
 
 ## Requisitos 📋
 
