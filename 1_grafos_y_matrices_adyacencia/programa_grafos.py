@@ -146,8 +146,6 @@ class Grafo:
                 else:
                     if (m[f][c] is None):
                         cadena += "\t" + "0"
-                    #           elif(math.isinf(m[f][c])):
-                    #             cadena += "\t" + "∞"
                     else:
                         cadena += "\t" + "1"
         cadena += "\n"
@@ -369,10 +367,6 @@ def Algoritmo_Kruskal(grafo, Nodo):
     Ordenada = list(grafo['B'])
     Ordenada.sort()
     Ordenada = [(a,b,c) for c,a,b in Ordenada]
-    print ("==============================")
-    print ("Datos Ordenados")
-    print("==============================")
-    print("Ordenados:", Ordenada)
     Ordenada = [(c,a,b) for a,b,c in Ordenada]
     # Se recorre la lista de aristas que están ordenadas
     for Dato in Ordenada:
@@ -381,11 +375,7 @@ def Algoritmo_Kruskal(grafo, Nodo):
         if Find_set(u, Nodo) != Find_set(v, Nodo):
             # Se almacena al arista de menor peso
             resultante.append(Dato)
-            print("==============================")
-            print("Paso:", cont)
-            print("==============================")
             resultante = [(a,b,c) for c,a,b in resultante]
-            print("Resultante: ", resultante) 
             resultante = [(c,a,b) for a,b,c in resultante]
             cont+=1
             Union(u, v, Ordenada, Nodo)
@@ -431,11 +421,11 @@ def aplicacion_kruskal():
             else:
                 resultado[destino] = [(origen,peso)]
                 resultado[origen] = [(destino,peso)]
-        print("\n=========Resultados=========")
-        print("Arbol de expansion minima: ")
-        for key, lista in resultado.items():
-          print(key)
-          print(set(lista))
+    print("\n=========Resultados=========")
+    print("Arbol de expansion minima: ")
+    for key, lista in resultado.items():
+        print(key)
+        print(set(lista))
         
 
 Grafo = Grafo()
