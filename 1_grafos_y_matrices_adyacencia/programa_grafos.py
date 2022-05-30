@@ -17,7 +17,9 @@ def menu():
     print('9. Eligir un grafo registrado para opciones 2, 3, 4, 5 y 6')
     print('10. Flujo Maximo')
     print('11. Numero cromatico y coloreo')
-    print('12. Salir')
+    print('12. Árbol Kruskal, aplicable solo grafo conexo')
+    print('13. Árbol Prim, aplicable solo grafo conexo')
+    print('14. Salir')
     print(' ------------------------------- ')
 
 class GrafoN:
@@ -257,7 +259,185 @@ class Grafo:
                 #Codigo del rearme de ruta (In progress...)
                 #Distancias (working...)
                 print("Distancia menor de " + v_inicial + "->" + self.vertices[i[0]] + ": " + str(i[1]))
-            
+
+#Aplicación para el algoritmo PRIM
+def Prim(grafo, origen):
+  # Se crea las estructuras de datos necesarias para
+  # almacenar los datos necesarios.
+  listaVisitados = []
+  grafoResultante = {}
+  listaOrdenada = []
+  # Se agrega a una lista listaVisitados al nodo inicial
+  listaVisitados.append(origen)
+
+  # Se agrega las adyacencias del vertice inicial lista ordenada
+  for destino, peso in grafo[origen]:
+    listaOrdenada.append((origen, destino, peso))
+  # Se aplica el método de ordenamiento de inserción
+  pos=0
+  act=0
+  listAux=[]
+  for i in range(len(listaOrdenada)):
+      listAux=listaOrdenada[i]
+      act=listaOrdenada[i][2]
+      pos=i
+      while pos> 0 and listaOrdenada[pos-1][2] > act:
+          listaOrdenada[pos] = listaOrdenada[pos-1]
+          pos=pos-1
+      listaOrdenada[pos]=listAux
+  # Se entra un bucle mientas la listaOrdenada no estuviera vacia
+  while listaOrdenada:
+    # Se toma un vertice de la lista ordenada y eliminarlo
+    vertice = listaOrdenada.pop(0)
+    d = vertice[1]
+    # Se verifica que el destino no se ha visitado o tocado
+    if d not in listaVisitados:
+      # Se agrega a la lista de visitados en nodo destino
+      listaVisitados.append(d)
+      # Cabe mencionar que "d" corresponde a los nodos que no fueron visitados
+      for key, lista in grafo[d]:
+        if key not in listaVisitados:
+          listaOrdenada.append((d, key, lista))
+      # Se ordena el listado de aristas
+      listaOrdenada = [(c,a,b) for a,b,c in listaOrdenada]
+      listaOrdenada.sort()
+      listaOrdenada = [(a,b,c) for c,a,b in listaOrdenada]
+      # Se extrae el vertice inicial, destino y peso para agregar en
+      # el grafo resultante de Prim
+      origen  = vertice[0]
+      destino = vertice[1]
+      peso    = vertice[2]
+      # Se verifica que el vertice inicial exista en grafo resultante
+      if origen in grafoResultante:
+        # Se verifica que el vertice destino exista en grafo resultante
+        if destino in grafoResultante:
+          lista = grafoResultante[origen]
+          grafoResultante[origen] = lista + [(destino, peso)]
+          lista = grafoResultante[destino]
+          lista.append((origen, peso))
+          grafoResultante[destino] = lista
+        # En caso de que el vertice destino no exista en grafo resultante
+        else:
+          grafoResultante[destino] = [(origen, peso)]
+          lista = grafoResultante[origen]
+          lista.append((destino, peso))
+          grafoResultante[origen] = lista
+      # Se verifica que el vertice inicial no exista pero si resultante en grafo resultante
+      elif destino in grafoResultante:
+        grafoResultante[origen] = [(destino, peso)]
+        lista = grafoResultante [destino]
+        lista.append((origen, peso))
+        grafoResultante[destino] = lista
+      # En caso de que ambos nodos, vertices inicial y destino, no exista
+      else:
+        grafoResultante[destino] = [(origen, peso)]
+        grafoResultante[origen] = [(destino, peso)]
+      
+  print("\n\nGrafo resultante:\n")
+  for key, lista in grafoResultante.items():
+    print(key)
+    print(lista)
+
+
+#Aplicación para el algoritmo KRUSKAL
+
+# Función donde se crea conjunto en los vertices, asignando uno a un nodo
+def Make_set(vertice, Nodo):
+    Nodo[vertice] = vertice
+
+# Funcion que permite buscar conjunto en los vertices
+def Find_set(vertice, Nodo):
+    if Nodo[vertice] != vertice:
+        Nodo[vertice] = Find_set(Nodo[vertice], Nodo)
+    return Nodo[vertice]
+# Función que permite unir dos nodos formando una arista
+def Union(u, v, Ordenada, Nodo):
+    Dato1 = Find_set(u, Nodo)
+    Dato2 = Find_set(v, Nodo)
+    if Dato1 != Dato2:
+        for Dato in Ordenada:
+            Nodo[Dato1] = Dato2
+
+def Algoritmo_Kruskal(grafo, Nodo):
+# Se guarda las aristas resultantes
+    resultante = []
+    cont = 0
+    # Se almacena los nodos desde el grafo ingresado
+    for vertice in grafo['A']:
+        Make_set(vertice, Nodo)
+    # Se procede en ordenar la lista de aristas
+    Ordenada = list(grafo['B'])
+    Ordenada.sort()
+    Ordenada = [(a,b,c) for c,a,b in Ordenada]
+    print ("==============================")
+    print ("Datos Ordenados")
+    print("==============================")
+    print("Ordenados:", Ordenada)
+    Ordenada = [(c,a,b) for a,b,c in Ordenada]
+    # Se recorre la lista de aristas que están ordenadas
+    for Dato in Ordenada:
+        peso, u, v = Dato
+        # Se verifica que ambos nodos sean distintos
+        if Find_set(u, Nodo) != Find_set(v, Nodo):
+            # Se almacena al arista de menor peso
+            resultante.append(Dato)
+            print("==============================")
+            print("Paso:", cont)
+            print("==============================")
+            resultante = [(a,b,c) for c,a,b in resultante]
+            print("Resultante: ", resultante) 
+            resultante = [(c,a,b) for a,b,c in resultante]
+            cont+=1
+            Union(u, v, Ordenada, Nodo)
+    return resultante
+
+def aplicacion_kruskal():
+    Nodo = dict()
+    resultado = {}
+    #conjuntos = []
+    aux = []
+    for i in Grafo.aristas: #se recorre la arista
+        aux.append((i[2], i[0], i[1]))
+        grafo = {
+        'A': Grafo.vertices,
+        'B': aux
+        } #se construye un diccionario
+        # Se obtiene el resultado de árbol kruskal
+        resultante = Algoritmo_Kruskal(grafo, Nodo)
+        resultante = [(a,b,c) for c,a,b in resultante]
+        for origen,destino,peso in resultante:
+            # Se verifica que el vertice origen exista en el resultado 
+            if origen in resultado:
+                # Se verifica que el vertice destino exista en el resultado
+                if destino in resultado:
+                    lista = resultado[origen]
+                    resultado[origen] = lista+[(destino,peso)]
+                    lista = resultado[destino]
+                    lista.append((origen,peso))
+                    resultado[destino] = lista
+                # En caso de que el vertice destino no exista en el resultado
+                else:
+                    resultado[destino] = [(origen,peso)]
+                    lista = resultado[origen]
+                    lista.append((destino,peso))
+                    resultado[origen] = lista
+            # En caso de que el vertice destino exista pero no el origen en el resultado
+            elif destino in resultado:
+                resultado[origen] = [(destino,peso)]
+                lista = resultado[destino]
+                lista.append((origen,peso))
+                resultado[destino] = lista
+            # En caso de que los vertices origen y destino no existan en el resultado
+            else:
+                resultado[destino] = [(origen,peso)]
+                resultado[origen] = [(destino,peso)]
+        print("\n=========Resultados=========")
+        print("Arbol de expansion minima: ")
+        for key, lista in resultado.items():
+          print(key)
+          print(set(lista))
+        
+
 Grafo = Grafo()
 Grafos = GrafoN()
 
@@ -453,11 +633,47 @@ while True:
       input("Presione ENTER para continuar...")
       os.system("clear")
 
-    elif (opcionMenu == '12'):
+    elif (opcionMenu == '12' and Grafos.cantidad != 0):
+        if(Grafo.isConexo()):
+            aplicacion_kruskal()
+        else:
+            print("El grafo NO es conexo, por lo que no servirá para aplicar el algoritmo Kruskal.")
+        input("Presione ENTER para terminar...")
+        os.system("clear")
+
+    elif (opcionMenu == '13' and Grafos.cantidad != 0):
+        if(Grafo.isConexo()):
+            x = {}
+            for v in Grafo.vertices:
+                adjacencia = []
+                for a in Grafo.aristas:
+                    if(v==a[0]):
+                        adjacencia.append((a[1], a[2]))
+                    elif(v==a[1]):
+                        adjacencia.append((a[0], a[2]))
+                x[v] = adjacencia
+            # Se elige un nodo existente de acuerdo a lo que ingrese el usuario
+            validacionVertice = 0
+            while(validacionVertice == 0):
+                print("El grafo que se está viendo contiene los siguientes vertices: ", Grafo.vertices)
+                nodo = input("\nIngrese un vertice (nodo) para aplicar al algoritmo Prim: ")
+                for v in Grafo.vertices:
+                    if(v==nodo):
+                        validacionVertice = 1
+                        break
+                if(validacionVertice == 0):
+                    print("Usted no ingresó correctamente el vertice, vuelve a intentarlo...")
+            Prim(x, nodo)    
+        else:
+            print("El grafo NO es conexo, por lo que no servirá para aplicar el algoritmo PRIM.")
+        input("Presione ENTER para terminar...")
+        os.system("clear")
+
+    elif (opcionMenu == '14'):
         print("Gracias por utilizar el programa ^_^")
         input("Presione ENTER para terminar...")
         break 
-
+    
     else:
         if(Grafos.cantidad == 0):
             print("Para proceder con otras opciones, debe ingresar un grafo")
