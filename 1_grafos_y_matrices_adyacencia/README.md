@@ -2,7 +2,6 @@
 
 ## Descripción 🚀
 
-<<<<<<< HEAD
 El proyecto consta de estudio sobre [Grafos](https://www.unipamplona.edu.co/unipamplona/portalIG/home_23/recursos/general/11072012/grafo3.pdf) y 
 [Matrices de adyacencia](https://www.ecured.cu/Matriz_de_adyacencia), cuyo programa implementado, cuenta con una serie de opciones, donde estos se mencionan a continuación:
 
@@ -18,23 +17,6 @@ El proyecto consta de estudio sobre [Grafos](https://www.unipamplona.edu.co/unip
 * Aplicación de otro algoritmo [Prim](https://www.ecured.cu/Algoritmo_de_Prim) en un grafo, aplicable solo de tipo conexo.
 
 Al ingresar el último grafo en el programa correctamente, queda seleccionado para aplicar distintas opciones de forma automática. Sin embargo, al almacenar los otros grafos según el orden que se ha ingresado (1 a N), cuenta con una opción de elegir uno de ellos. Para la opción del menú sobre "Isomorfismo", puede elegir dos grafos ingresados al programa, considerando el dicho orden mencionado anteriormente. En estricto rigor, también cuenta la opción de eliminar todos los grafos almacenados. Para ingresar un grafo correctamente, debe escribir por pantalla los vertices en la forma "v1 v2 vn" y aristas "v1,v2,X v2,vn,Y vn,v1,Z", donde "v" representa el vertice y las otras variables "X, Y y Z" representan el peso de aristas.
-=======
-Este programa consiste en el estudio de grafos, donde el usuario podrá ingresar diferentes opciones (en números) que estime conveniente, donde estas son las siguientes
-1. Ingresar un nuevo grafo
-2. f
-3. dg
-4. fg
-5. dgsd
-6. df
-7.
-8.
-9.
-10.
-11.
-12.
-13.
-14.
->>>>>>> 4d94bf53dd4dd50b82caef762b98f54efc2cb4aa
 
 ## Requisitos 📋
 
@@ -59,4 +41,3 @@ Para ejecutarlo por terminal, debe posicionarse en esta carpeta e ingresar el si
 <!--sec data-title="Prompt: OS X and Linux" data-id="OSX_Linux_prompt" data-collapse=true ces-->
     python main.py
 <!--endsec-->
-
