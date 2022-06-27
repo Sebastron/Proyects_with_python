@@ -64,7 +64,7 @@ def option(Grafo, Grafos):
                 else:
                     validacion = 2
                     Grafos.AddGrafo(Grafo.vertices, Grafo.aristas)
-                    print("Datos ingresados correctamente, se tomará en cuenta el grafo ingresado.")
+                    print("Datos ingresados correctamente, se tomara en cuenta el grafo ingresado.")
         
         elif (opcionMenu == '2' and Grafos.cantidad != 0):
             Grafo.imprimir_matriz(Grafo.matriz)
@@ -108,7 +108,7 @@ def option(Grafo, Grafos):
             if(Grafos.cantidad > 1):
                 validacion7 = 0
                 while(validacion7 == 0):
-                    print("Está registrado un total de ", Grafos.cantidad, " grafos, considere el orden de los grafos ingresados, donde este ultimo valor representa la ultima posicion.")
+                    print("Esta registrado un total de ", Grafos.cantidad, " grafos, considere el orden de los grafos ingresados, donde este ultimo valor representa la ultima posicion.")
                     X = int(input("Ingrese la posicion del primer grafo: "))
                     Y = int(input("Ingrese la posicion del segundo grafo: "))
                     if(Grafos.ValidarPosicion(X) and Grafos.ValidarPosicion(Y)):
@@ -126,7 +126,7 @@ def option(Grafo, Grafos):
                 else:
                     print("Los grafos ingresados no corresponden a grafos isomorfos")
             else:
-                print("Usted solo ingresó un grafo, se necesita ingresar otro grafo adicional al programa.")
+                print("Usted solo ingreso un grafo, se necesita ingresar otro grafo adicional al programa.")
     
         elif (opcionMenu == '8'): #Para resetear todos los grafos
             Grafo.reset()
@@ -136,8 +136,8 @@ def option(Grafo, Grafos):
         elif (opcionMenu == '9' and Grafos.cantidad != 0):
             validacion9 = 0
             while(validacion9 == 0):
-                print("Elige un grafo para ser ingresado en la opción 2, 3, 4, 5, 6")
-                print("Está registrado un total de ", Grafos.cantidad, " grafos, considere el orden de los grafos ingresados, donde este ultimo valor representa la ultima posicion.")
+                print("Elige un grafo para ser ingresado en la opcion 2, 3, 4, 5, 6")
+                print("Esta registrado un total de ", Grafos.cantidad, " grafos, considere el orden de los grafos ingresados, donde este ultimo valor representa la ultima posicion.")
                 X = int(input("Ingrese la posicion del grafo registrado que quieras usar: "))
                 if(Grafos.ValidarPosicion(X)):
                     validacion9 = 1
@@ -162,7 +162,7 @@ def option(Grafo, Grafos):
             if(Grafo.isConexo()):
                 kr.aplicacion_kruskal(Grafo)
             else:
-                print("El grafo NO es conexo, por lo que no servirá para aplicar el algoritmo Kruskal.")
+                print("El grafo NO es conexo, por lo que no servira para aplicar el algoritmo Kruskal.")
 
         elif (opcionMenu == '13' and Grafos.cantidad != 0):
             if(Grafo.isConexo()):
@@ -178,17 +178,17 @@ def option(Grafo, Grafos):
                 # Se elige un nodo existente de acuerdo a lo que ingrese el usuario
                 validacionVertice = 0
                 while(validacionVertice == 0):
-                    print("El grafo que se está viendo contiene los siguientes vertices: ", Grafo.vertices)
+                    print("El grafo que se esta viendo contiene los siguientes vertices: ", Grafo.vertices)
                     nodo = input("\nIngrese un vertice (nodo) para aplicar al algoritmo Prim: ")
                     for v in Grafo.vertices:
                         if(v==nodo):
                             validacionVertice = 1
                             break
                     if(validacionVertice == 0):
-                        print("Usted no ingresó correctamente el vertice, vuelve a intentarlo...")
+                        print("Usted no ingreso correctamente el vertice, vuelve a intentarlo...")
                 pm.Prim(x, nodo)    
             else:
-                print("El grafo NO es conexo, por lo que no servirá para aplicar el algoritmo PRIM.")
+                print("El grafo NO es conexo, por lo que no servira para aplicar el algoritmo PRIM.")
 
         elif (opcionMenu == '14'):
             print("Gracias por utilizar el programa ^_^")
