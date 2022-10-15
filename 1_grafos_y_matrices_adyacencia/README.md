@@ -3,7 +3,7 @@
 ## Descripción 🚀
 
 El proyecto consta de estudio sobre [Grafos](https://www.unipamplona.edu.co/unipamplona/portalIG/home_23/recursos/general/11072012/grafo3.pdf) y 
-[Matrices de adyacencia](https://www.ecured.cu/Matriz_de_adyacencia), cuyo programa implementado, cuenta con una serie de opciones, donde estos se mencionan a continuación:
+[Matrices de adyacencia](https://www.ecured.cu/Matriz_de_adyacencia), cuyo programa implementado cuenta con una serie de opciones, donde estos se mencionan a continuación:
 
 * Mostrar por pantalla la matriz de adyacencia.
 * Imprimir cantidad de vertices y aristas al grafo ingresado o seleccionado.
